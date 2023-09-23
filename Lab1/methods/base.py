@@ -30,7 +30,7 @@ def timeIt(calculusClass,task,seq=100):
     #gc.collect()
     if result is None:
         return
-    print(f'Execution time of {calculusClass.__name__:24s} is {endTime/SeqLaunches/1000:9.3f} us | Itteration count: {result[2]:6d} X: {result[0]:10.7f} Y: {result[1]:10.10f}')
+    print(f'Execution time of {calculusClass.__name__:24s} is {endTime/SeqLaunches/1000:9.3f} us | Iteration count: {result[2]:6d} X: {result[0]:10.7f} Y: {result[1]:10.10f}')
 
 def frange(start,stop,step):
     out = []

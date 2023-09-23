@@ -14,10 +14,10 @@ def calcL(task):
     function = task.function
 
     step = (b-a)/subdivision
-    L = (function(a+step)-function(a))/step
+    L = abs((function(a+step)-function(a))/step)
     for i in range(1,subdivision):
-        tmp = (function(a+step*(i+1))-function(a+step*i))/step
-        L = tmp if abs(tmp) > abs(L) else L
+        tmp = abs((function(a+step*(i+1))-function(a+step*i))/step)
+        L = tmp if tmp > L else L
     return L*correction
 
 
@@ -55,12 +55,11 @@ def calculate(task):
         #print(L,d,x0,y0,x1,x2)
         index = 0
         minX = function(x[0][0])
-        x0 = x[0][0]
         for i in range(len(x)):
             if function(x[i][0]) < minX:
                 minX = function(x[i][0])
-                x0 = x[i][0]
                 y0 = x[i][1]
                 index = i
 
         y0 = (function(x0) + y0)/2
+        x0 = x[index][0]
