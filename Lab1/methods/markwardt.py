@@ -20,8 +20,11 @@ def calculate(task):
 
     u = diff2(x0)*10
 
+    itter = 0
+
     #while a <= x0 <= b:
     while True:
+        itter += 1
         x1 = x0 - diff1(x0)/(diff2(x0) + u)
         u /= 2
 
@@ -33,7 +36,7 @@ def calculate(task):
 
         x1 = min(max(x1,a),b) # Limit Newton's method to our limits.
         if abs(x1 - x0) <= epsilon:
-            return x1, function(x1)
+            return x1, function(x1), itter
         x0 = x1
 
     #print(f'[ASSERT|{__name__}] Newton method failed (???)')

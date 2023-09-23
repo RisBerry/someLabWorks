@@ -19,11 +19,15 @@ def calculate(task):
     f2=function(x2)
 
     eps = (b-a)/2
+
+    itter = 0
     
     while True:
+        itter += 1
+
         if eps <= epsilon:
             xM = (b+a)/2.
-            return xM, function(xM)
+            return xM, function(xM), itter
 
         if f1<=f2:
             b  = x2

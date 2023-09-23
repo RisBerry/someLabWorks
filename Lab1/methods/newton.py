@@ -18,19 +18,22 @@ def calculate(task):
 
     failsafe = 0
 
+    itter = 0
     #while a <= x0 <= b:
     while True:
+        itter += 1
         x1 = x0 - diff1(x0)/diff2(x0)
 
+        #print(x1)
         if x1 < a or x1 > b:
             failsafe += 1
-        if failsafe >= 10:
+        if failsafe >= 4:
             print(f'[ASSERT|{__name__}] Newton method failed (failsafe out of range limit {x1:.4f})')
             return None
 
         x1 = min(max(x1,a),b) # Limit Newton's method to our limits.
         if abs(x1 - x0) <= epsilon:
-            return x1, function(x1)
+            return x1, function(x1), itter
         x0 = x1
 
     #print(f'[ASSERT|{__name__}] Newton method failed (???)')

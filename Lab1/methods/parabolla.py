@@ -20,8 +20,10 @@ def calculate(task):
     #if f2 > f1 or f2 > f3:
     #    print('[ASSERT] Parabola cann\'t be applied')
     #    return None
+    itter = 0
 
     while True:
+        itter += 1
         if (x2-x1 == 0) or (x3-x2==0) or (x3-x1==0):
             print(f'[ASSERT|{__name__}] Parabola cann\'t be applied (division by zero)')
             return None
@@ -37,7 +39,7 @@ def calculate(task):
         xm = (x1+x2-a1/a2)/2
 
         if xmPrev is not None and xm is not None and abs(xm-xmPrev) < epsilon:
-            return xm, function(xm) 
+            return xm, function(xm), itter 
 
         if   x1 <= xm <= x2:
             x3 = x2

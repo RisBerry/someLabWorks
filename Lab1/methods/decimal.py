@@ -17,7 +17,11 @@ def calculate(task):
     xm = minX
     Fx0 = function(x0)
 
+    itter = 0
+
     while True:
+        itter+=1
+
         x1 += step
         Fx1 = function(x1)
         #print(f'Debug| step:{step:.5f}| x1:{x1:.5f} | Fx1:{Fx1} | Fx0:{Fx0}')
@@ -29,4 +33,4 @@ def calculate(task):
         xm = x1
         Fx0 = Fx1
 
-    return (xm,Fx0) 
+    return (xm,Fx0,itter) 
