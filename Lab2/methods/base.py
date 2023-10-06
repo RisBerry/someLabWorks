@@ -101,14 +101,16 @@ def frange(start,stop,step):
         start+=step
     return out
 
-def plotFunction(task, rad, name = 'plot.html'):
+def plotFunction(func, start, e, rad, name = 'plot.html'):
+    x,y = start
+    xVar = frange(x-rad,x+rad,e)
+    yVar = frange(y-rad,y+rad,e)
+    zVar = [[func.get(x,y) for x in xVar] for y in yVar]
+    output = [Surface(x = xVar, y = yVar, z = zVar, name = 'Our function')]
+    plot(output,filename = name,show_link=False)
+
+def plotTask(task, rad, name = 'plot.html'):
     if not plotlyInstalled:
         print('[ERROR] No plotly installed | Aborting graph plotting')
         return
-    x,y = task.startpoint
-    e = task.epsilon
-    xVar = frange(x-rad,x+rad,e)
-    yVar = frange(y-rad,y+rad,e)
-    zVar = [[task.func.get(x,y) for x in xVar] for y in yVar]
-    output = [Surface(x = xVar, y = yVar, z = zVar, name = 'Our function')]
-    plot(output,filename = name,show_link=False)
+    plotFunction(task.func, task.startpoint, task.epsilon, rad, name)

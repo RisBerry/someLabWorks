@@ -21,9 +21,9 @@ a1func   = base.function(
         a1derivY
         )
 
-taskA1 = base.task(a1func, 0.1, startpoint = (.0, .0))
+taskA1 = base.task(a1func, .1, startpoint = (.0, .0))
 
 #print('\nEpsilon: 0.1')
 
-#base.plotFunction(taskA1, 10)
+#base.plotTask(taskA1, 10)
 #timeIt(bruteforce,myTask)
