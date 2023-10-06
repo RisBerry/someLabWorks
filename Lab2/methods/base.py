@@ -31,6 +31,9 @@ class function:
 
         if isinstance(self.dX2, type(self)):
             return self.dX2.reset()
+    
+    def grad(self):
+        return [self.get_dX1, self.get_dX2()]
 
     def get(self,x,y):
         self.countCalls+=1
