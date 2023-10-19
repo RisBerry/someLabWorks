@@ -11,57 +11,57 @@ except:
 
 class function:
     func = None
-    dX1 = None
-    dX2 = None
+    dX = None
+    dY = None
 
     countCalls = 0
     countDeriv = 0
 
-    def __init__(self, func, diffX1, diffX2):
+    def __init__(self, func, diffX, diffY):
         self.func = func
-        self.dX1 = diffX1
-        self.dX2 = diffX2
+        self.dX = diffX
+        self.dY = diffY
 
     def reset(self):
         self.countCalls = 0
         self.countDeriv = 0
 
-        if isinstance(self.dX1, type(self)):
-            return self.dX1.reset()
+        if isinstance(self.dX, type(self)):
+            self.dX.reset()
 
-        if isinstance(self.dX2, type(self)):
-            return self.dX2.reset()
+        if isinstance(self.dY, type(self)):
+            self.dY.reset()
     
-    def grad(self):
-        return [self.get_dX1, self.get_dX2()]
+    def grad(self, x, y):
+        return [self.get_dX(x, y), self.get_dY(x, y)]
 
     def get(self,x,y):
         self.countCalls+=1
         return self.func(x, y)
 
-    def get_dX1(self,x,y):
-        if isinstance(self.dX1, type(self)):
-            return self.dX1.get(x, y)
+    def get_dX(self,x,y):
+        if isinstance(self.dX, type(self)):
+            return self.dX.get(x, y)
         else:
             self.countDeriv+=1
-            return self.dX1(x, y)
+            return self.dX(x, y)
 
-    def get_dX2(self,x,y):
-        if isinstance(self.dX2, type(self)):
-            return self.dX2.get(x, y)
+    def get_dY(self,x,y):
+        if isinstance(self.dY, type(self)):
+            return self.dY.get(x, y)
         else:
             self.countDeriv+=1
-            return self.dX2(x, y)
+            return self.dY(x, y)
 
     def callCount(self):
         func  = self.countCalls
         deriv = self.countDeriv
 
-        if isinstance(self.dX1, type(self)):
-            deriv += sum(self.dX1.callCount())
+        if isinstance(self.dX, type(self)):
+            deriv += sum(self.dX.callCount())
 
-        if isinstance(self.dX2, type(self)):
-            deriv += sum(self.dX2.callCount())
+        if isinstance(self.dY, type(self)):
+            deriv += sum(self.dY.callCount())
 
         return (func, deriv)
 
@@ -91,11 +91,16 @@ class task:
 
 def timeIt(calculusClass,task):
 
+    task.reset()
+
     result = calculusClass.calculate(task)
     
     if result is None:
+        print(f'[ASSERT | {calculusClass.__name__}] Calculation returned None')
         return
-    print(f'Total calls: {task.totalCallCount} Func calls: {task.functionCallCount} Deriv calls: {task.derivCallCount} | X: 0.0 Y: 0.0 Z: 0.0')
+
+    x,y,z = result
+    print(f'[{calculusClass.__name__:20s}] Total calls: {task.totalCallCount():7d} Func calls: {task.functionCallCount():7d} Deriv calls: {task.derivCallCount():7d} | X: {x:.6f} Y: {y:.6f} Z: {z:.6f}')
 
 def frange(start,stop,step):
     out = []
