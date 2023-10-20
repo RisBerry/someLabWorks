@@ -8,6 +8,7 @@ def calculate(task):
     func = task.func
     xk = task.startpoint
     e = task.epsilon
+    e1d = task.epsilon1d
 
     k = 0
     n = restart
@@ -42,7 +43,7 @@ def calculate(task):
 
 
         #print('[s1]',xk,p0n,a)
-        a = decimal.calculate(func1d, e, a, e)
+        a = decimal.calculate(func1d, e1d, a, e1d)
 
         #Step 4
         xkn = vec.add(xk, vec.mulC(c = a, v = p0n))

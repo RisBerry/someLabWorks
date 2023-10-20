@@ -1,5 +1,5 @@
 from methods import base
-from methods import slope,gradient
+from methods import slope,gradient,newton,simplex,cycle
 from methods.base import timeIt
 from math import *
 
@@ -18,6 +18,9 @@ def bruteA(task):
         print(f'\nVariable A: {a}')
         timeIt(slope,task)
         timeIt(gradient,task)
+        timeIt(newton,task)
+        timeIt(simplex,task)
+        timeIt(cycle,task)
 
 def massExec(task):
     print(f'\nEpsilon: {task.epsilon}')
@@ -43,5 +46,6 @@ task = base.task(func, .001, startpoint = (1., 1.))
 massExec(task)
 #base.plotTask(taskA1, 10)
 
-task.epsilon = .00001
+task.epsilon   = .00001
+task.epsilon1d = .00001
 massExec(task)

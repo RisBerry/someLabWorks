@@ -31,6 +31,12 @@ class function:
 
         if isinstance(self.dY, type(self)):
             self.dY.reset()
+
+    def hess(self, x, y):
+        return [
+            [self.dX.get_dX(x, y), self.dX.get_dY(x, y)],
+            [self.dY.get_dX(x, y), self.dY.get_dY(x, y)]
+                ]
     
     def grad(self, x, y):
         return [self.get_dX(x, y), self.get_dY(x, y)]
@@ -69,11 +75,16 @@ class task:
     func = None
     startpoint = None
     epsilon = 1.
+    epsilon1d = 1.
 
-    def __init__(self, function, epsilon, startpoint = (.0, .0)):
+    def __init__(self, function, epsilon, startpoint = (.0, .0), epsilon1d = None):
         self.func = function
         self.epsilon = epsilon
         self.startpoint = startpoint
+        if epsilon1d is None:
+            self.epsilon1d = epsilon
+        else:
+            self.epsilon1d = epsilon1d
     
     def reset(self):
         self.func.reset()
