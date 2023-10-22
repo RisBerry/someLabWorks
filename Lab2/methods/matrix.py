@@ -12,6 +12,9 @@ def determ(m):
 
 def invert(m):
     d = determ(m)
+    
+    if d == 0.:
+        return None
 
     at = [
         [m[1][1],-m[0][1]],

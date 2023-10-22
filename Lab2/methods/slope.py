@@ -11,21 +11,21 @@ def calculate(task):
     e = task.epsilon
     e1d = task.epsilon1d
 
-
     while True:
         grad = func.grad(*xk)
         if vec.vlen(grad) < e:
             z = func.get(*xk)
             return (*xk , z)
 
-        a = max(e, vec.vlen(grad))
         norm = vec.normalize(grad)
-    
+ 
         if vanilla:
+            a = max(100, vec.vlen(grad))
             func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = grad) ))
             a = decimal.calculate(func1d, 0, a, e1d)
             xk = vec.sub(xk, vec.mulC(c = a, v = grad) )
         else:
+            a = max(e, vec.vlen(grad))
             if a > 1:
                 func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = norm) ))
                 a = decimal.calculate(func1d, 0, a, e)
@@ -33,6 +33,6 @@ def calculate(task):
             else:
                 a = sqrt(a)
                 func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = grad) ))
-                a = decimal.calculate(func1d, 0, a, e)
+                a = decimal.calculate(func1d, e/2., a, e)
                 xk = vec.sub(xk, vec.mulC(c = a, v = grad) )
         #print(a,xk,vec.vlen(grad),grad,norm)

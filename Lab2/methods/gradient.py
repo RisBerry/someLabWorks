@@ -36,8 +36,8 @@ def calculate(task):
             pass
 
         #Step 3
-        #a = max(e, vec.vlen(grad))
-        a = vec.vlen(grad)
+        a = max(e, vec.vlen(grad))
+        #a = max(100, vec.vlen(grad))
         #print(k,p0,xk,a)
         func1d = lambda ak: func.get(*vec.add(xk, vec.mulC(c = ak, v = p0n) ))
 
