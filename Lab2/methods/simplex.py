@@ -28,6 +28,7 @@ def midPoint(s):
     array = []
     for p in s:
         array.append(p[-1][0:2])
+    #print(vec.mulC(vec.sumarray(array),1/3)[0:2])
     return vec.mulC(vec.sumarray(array),1/3)[0:2]
 
 def calculate(task):
@@ -63,7 +64,7 @@ def calculate(task):
             xy = midPoint(simplex)
             xyz = [*xy, func.get(*xy)]
         grad = func.grad(*xyz[0:2])
-        if vec.vlen(grad) < e: #or ll < e:
+        if vec.vlen(grad) < e or ll < e:
             return (xyz)
 
         mX = sortByMax(simplex)
@@ -73,16 +74,20 @@ def calculate(task):
         #calculate mirror point
         #TODO: Try all possible mirrors
 
+        mp = midPoint(simplex)
         for i in mX:
             i = mX[-1]
             mirror = simplex[i][-1]
-            v = vec.mulC(vec.sub(midPoint(simplex),mirror[0:2]),3)
+            point = mirror[0:2]
+            v = vec.add(vec.mulC(vec.sub(mp,point),3),point)
             z = func.get(*v)
             if z < mirror[2]:
                 lastMirror = i
                 simplex[i].append([*v,z])
+                #print(f'Mirror! {i}')
                 break
         else:
+            #print('DIVIDE!')
             ll*=sigma
             lastMirror = None
             m = findMin(simplex) if lastMirror is None else lastMirror
@@ -96,7 +101,7 @@ def calculate(task):
 
         itter += 1
 
-        if itter > 10:
+        if itter > 100000:
             print(f'[FAILSAFE | {__name__}] {ll:.16f} {midPoint(simplex)}')
             simplexDump(simplex)
             return None
