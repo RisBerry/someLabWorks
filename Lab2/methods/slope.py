@@ -3,6 +3,8 @@ import methods.vector as vec
 from math import sqrt
 
 vanilla = False
+minDist = 100
+correction = 2.
 
 def calculate(task):
 
@@ -20,12 +22,12 @@ def calculate(task):
         norm = vec.normalize(grad)
  
         if vanilla:
-            a = max(100, vec.vlen(grad))
+            a = max(minDist, vec.vlen(grad)*correction)
             func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = grad) ))
             a = decimal.calculate(func1d, 0, a, e1d)
             xk = vec.sub(xk, vec.mulC(c = a, v = grad) )
         else:
-            a = max(e, vec.vlen(grad))
+            a = max(e, vec.vlen(grad)*correction)
             if a > 1:
                 func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = norm) ))
                 a = decimal.calculate(func1d, 0, a, e)

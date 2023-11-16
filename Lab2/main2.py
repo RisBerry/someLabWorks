@@ -7,15 +7,27 @@ from math import *
 #gc.disable()
 
 #Default configuration
-slope.vanilla = True
+slope.vanilla = False
+slope.correction = 4.
+
 gradient.restart = 3
+
 simplex.vanilla = True
 simplex.l = 10
-simplex.sigma = 0.2
+simplex.sigma = 0.5
+simplex.allPoints = False
+simplex.useGrad = False
+simplex.allowTriangleFlip = False
+
 cycle.vanilla = True
+cycle.alternativeVectors = True
 cycle.step = 20
-hj.vanilla = True
-hj.gamma = 10 
+
+hj.vanilla =  True
+hj.alternativeVectors = True
+hj.step = 5
+hj.gamma = 5 
+
 rnd.M = 100
 
 
@@ -47,8 +59,10 @@ func   = base.function(
 
 task = base.task(func, .001, startpoint = (1., 1.))
 task.epsilon1d = .00000001
-#base.plotTask(task, 10)
 massExec(task)
+
+#task.epsilon = 0.1
+#base.plotTask(task, 10)
 
 task.epsilon = .00001
 #task.epsilon1d = .00001

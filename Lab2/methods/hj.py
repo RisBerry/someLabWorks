@@ -3,10 +3,12 @@ import methods.vector as vec
 from math import sqrt
 
 vanilla = False
+alternativeVectors = False
 step = 4
 gamma = 20
 
 def calculate(task):
+    global step
 
     func = task.func
     xk = task.startpoint
@@ -15,18 +17,19 @@ def calculate(task):
 
     sigma = 1/gamma
 
-    basevectors = [
-        (1.,0.),
-        (0.,1.),
-            ]
+    if alternativeVectors:
+        basevectors = [
+            (1.,1.),
+            (-1.,1.),
+                ]
+    else:
+        basevectors = [
+            (1.,0.),
+            (0.,1.),
+                ]
 
-    #basevectors = [
-    #    (1.,1.),
-    #    (-1.,1.),
-    #        ]
-
-    #for bv in basevectors:
-    #    bv = vec.normalize(bv)
+    for bv in basevectors:
+        bv = vec.normalize(bv)
 
     z = func.get(*xk)
     zn = z
@@ -50,21 +53,27 @@ def calculate(task):
                 #print('z1')
                 xk = vec.add(xk, bv)
                 zn = z1
+                break
             elif z2 < z:
                 #print('z2')
                 xk = vec.sub(xk, bv)
                 zn = z2
-            else:
-                #print('divide')
-                basevectors[i] = vec.mulC(bv,sigma)
+                break
+        else:
+            #print('divide')
+            step *= sigma
+            #basevectors[i] = vec.mulC(bv,sigma)
 
         #Using alternative method
         #zn = func.get(*xk)
         if vanilla:
-            if abs(z-zn) < e and z != zn:
+            #if abs(z-zn) < e and z != zn:
+            if step < e and abs(z-zn) < e:
                 return (*xk , zn)
         else: 
             if vec.vlen(func.grad(*xk)) < e:
                 return (*xk , zn)
-
+            elif step < e1d:
+                print(f'[FAILSAFE | {__name__}] STEP is ZERO!')
+                return (*xk , zn)
         z = zn

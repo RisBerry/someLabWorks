@@ -8,13 +8,26 @@ from math import *
 
 #Default configuration
 slope.vanilla = False
+slope.correction = 4
+
 gradient.restart = 3
+gradient.correction = 2
+
 simplex.vanilla = True
+simplex.useGrad = False
+simplex.l = 1
+simplex.sigma = 0.95
+simplex.alwaysDump = False
+simplex.allowTriangleFlip = True
+
 cycle.vanilla = True
 cycle.step = 3
+
 hj.vanilla = False
+hj.alternativeVectors = True
 hj.step = 1
-hj.gamma =  2
+hj.gamma = 2
+
 rnd.M = 200
 
 

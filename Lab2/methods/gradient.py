@@ -2,6 +2,7 @@ import methods.decimal as decimal
 import methods.vector as vec
 
 restart = 1*2+1
+correction = 1.
 
 def calculate(task):
 
@@ -36,7 +37,7 @@ def calculate(task):
             pass
 
         #Step 3
-        a = max(e, vec.vlen(grad))
+        a = max(e, vec.vlen(grad)*correction)
         #a = max(100, vec.vlen(grad))
         #print(k,p0,xk,a)
         func1d = lambda ak: func.get(*vec.add(xk, vec.mulC(c = ak, v = p0n) ))

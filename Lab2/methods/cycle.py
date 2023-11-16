@@ -3,6 +3,7 @@ import methods.vector as vec
 from math import sqrt
 
 vanilla = True
+alternativeVectors = False
 step = 10
 
 def calculate(task):
@@ -12,17 +13,18 @@ def calculate(task):
     e = task.epsilon
     e1d = task.epsilon1d
 
-    basevectors = [
-        (1.,1.),
-        (-1.,1.),
-            ]
+    if alternativeVectors:
+        basevectors = [
+            (1.,1.),
+            (-1.,1.),
+                ]
+    else:
+        basevectors = [
+            (1.,0.),
+            (0.,1.),
+                ]
     for bv in basevectors:
         bv = vec.normalize(bv)
-
-    #basevectors = (
-    #    (1.,0.),
-    #    (0.,1.),
-    #        )
 
     currentVector = 0
     grad = None

@@ -14,7 +14,7 @@ def calculate(task):
 
     while True:
         if isnan(xk[0]):
-            print(f'[ASSERT| {__name__}] NaN detected')
+            print(f'[ASSERT | {__name__}] NaN detected')
             return None
 
         grad = func.grad(*xk)
@@ -25,7 +25,7 @@ def calculate(task):
         hess = matrix.invert(func.hess(*xk))
 
         if hess is None:
-            print(f'[ASSERT| {__name__}] Determinat is zero')
+            print(f'[ASSERT | {__name__}] Determinat is zero')
             return None
 
         grad = func.grad(*xk)

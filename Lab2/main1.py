@@ -10,10 +10,23 @@ from math import *
 a = 1 #Doesn't matter (Change in brute A)
 slope.vanilla = True
 gradient.restart = 3
+
 simplex.vanilla = True
+simplex.sigma = 0.6
+simplex.allPoints = False 
+simplex.useGrad = True
+simplex.allowTriangleFlip = False
+
 cycle.vanilla = True
-hj.vanilla = True
-rnd.M = 100
+
+hj.vanilla = False
+hj.gamma = 2
+
+rnd.M = 1000
+
+
+
+
 
 def bruteA(task):
     global a
