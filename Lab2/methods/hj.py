@@ -8,14 +8,13 @@ step = 4
 gamma = 20
 
 def calculate(task):
-    global step
-
     func = task.func
     xk = task.startpoint
     e = task.epsilon
     e1d = task.epsilon1d
 
     sigma = 1/gamma
+    st = step
 
     if alternativeVectors:
         basevectors = [
@@ -45,7 +44,7 @@ def calculate(task):
         #    basevectors = [vec.mulC(bv,sigma) for bv in basevectors]
         #    continue
         for i in range(len(basevectors)):
-            bv = vec.mulC(basevectors[i],step)
+            bv = vec.mulC(basevectors[i],st)
             z1 = func.get(*vec.add(xk,bv))
             z2 = func.get(*vec.sub(xk,bv))
 
@@ -61,7 +60,7 @@ def calculate(task):
                 break
         else:
             #print('divide')
-            step *= sigma
+            st *= sigma
             #basevectors[i] = vec.mulC(bv,sigma)
 
         #Using alternative method
@@ -74,6 +73,6 @@ def calculate(task):
             if vec.vlen(func.grad(*xk)) < e:
                 return (*xk , zn)
             elif step < e1d:
-                print(f'[FAILSAFE | {__name__}] STEP is ZERO!')
+                print(f'[FAILSAFE | {__name__}] STEP is (almost) ZERO!')
                 return (*xk , zn)
         z = zn

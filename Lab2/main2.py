@@ -23,7 +23,7 @@ cycle.vanilla = True
 cycle.alternativeVectors = True
 cycle.step = 20
 
-hj.vanilla =  True
+hj.vanilla = False
 hj.alternativeVectors = True
 hj.step = 5
 hj.gamma = 5 

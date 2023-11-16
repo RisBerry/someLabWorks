@@ -12,9 +12,9 @@ slope.vanilla = True
 gradient.restart = 3
 
 simplex.vanilla = True
-simplex.sigma = 0.6
-simplex.allPoints = False 
+simplex.sigma = 0.9
 simplex.useGrad = True
+simplex.allPoints = False 
 simplex.allowTriangleFlip = False
 
 cycle.vanilla = True
@@ -22,11 +22,7 @@ cycle.vanilla = True
 hj.vanilla = False
 hj.gamma = 2
 
-rnd.M = 1000
-
-
-
-
+rnd.M = 200
 
 def bruteA(task):
     global a
