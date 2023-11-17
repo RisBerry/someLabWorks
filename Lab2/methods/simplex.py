@@ -130,6 +130,7 @@ def calculate(task):
                     if z < flip[2]:
                         #print('FLIP!')
                         flipSuccsess = True
+                        lastMirror = None
                         for i in mX:
                             p = vec.add(simplex[i][-1][0:2],flipVec)
                             simplex[i].append([*p,func.get(*p)])
