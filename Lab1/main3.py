@@ -24,8 +24,8 @@ timeIt(bruteforce,task1)
 timeIt(broken,task1)
 timeIt(broken_dump,task1)
 
-dump = broken_dump.calculate(task1)[3]
-broken_dump.plotDump(task1,dump)
+#dump = broken_dump.calculate(task1)[3]
+#broken_dump.plotDump(task1,dump)
 
 print('\n#Launching task2')
 timeIt(bruteforce,task2)

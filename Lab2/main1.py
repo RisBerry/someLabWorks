@@ -19,6 +19,8 @@ simplex.allowTriangleFlip = False
 
 cycle.vanilla = True
 
+newton.alwaysDump = False
+
 hj.vanilla = False
 hj.gamma = 2
 
