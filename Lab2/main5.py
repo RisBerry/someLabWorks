@@ -21,6 +21,8 @@ simplex.allowTriangleFlip = True
 cycle.vanilla = True
 cycle.step = 3
 
+newton.alwaysDump = False
+
 hj.vanilla = False
 hj.alternativeVectors = True
 hj.step = 1

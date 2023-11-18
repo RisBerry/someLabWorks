@@ -16,6 +16,7 @@ gradient.correction = 2
 simplex.vanilla = True
 simplex.useGrad = False
 simplex.l = 3
+simplex.allPoints = False
 simplex.sigma = 0.83
 simplex.alwaysDump = False
 simplex.allowTriangleFlip = True

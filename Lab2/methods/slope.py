@@ -30,11 +30,11 @@ def calculate(task):
             a = max(e, vec.vlen(grad)*correction)
             if a > 1:
                 func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = norm) ))
-                a = decimal.calculate(func1d, 0, a, e)
+                a = decimal.calculate(func1d, 0, a, e1d)
                 xk = vec.sub(xk, vec.mulC(c = a, v = norm) )
             else:
                 a = sqrt(a)
                 func1d = lambda ak: func.get(*vec.sub(xk, vec.mulC(c = ak, v = grad) ))
-                a = decimal.calculate(func1d, e/2., a, e)
+                a = decimal.calculate(func1d, e1d/2., a, e1d)
                 xk = vec.sub(xk, vec.mulC(c = a, v = grad) )
         #print(a,xk,vec.vlen(grad),grad,norm)

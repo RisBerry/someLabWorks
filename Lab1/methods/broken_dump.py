@@ -23,6 +23,7 @@ def calcL(task):
         tmp = abs((function(a+step*(i+1))-function(a+step*i))/step)
         L = tmp if tmp > L else L
     #Incorrect way to evaluate L 
+    # ||
     #\_/
     #L = (function(a+step)-function(a))/step
     #for i in range(1,subdivision):
@@ -78,7 +79,7 @@ def calculate(task):
             return None
 
         index = index
-        minX = function(x[index][0])
+        minX = (function(x[index][0]))
         x0 = x[index][0]
         y0 = x[index][1]
 

@@ -7,7 +7,7 @@ def calcL(task):
     #subdivision = 1000
     correction = 1
     #correction = 1.5
-    #correction = 10 #Good for first task
+    correction = 10 #Good for first task
     ######
     a = task.xRange[0]
     b = task.xRange[1]
