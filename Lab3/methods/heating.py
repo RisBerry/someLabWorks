@@ -61,10 +61,14 @@ def calculate(task):
         if delta < 0:
             bestPoint = point
             cords = newCords
+            ##Restrict
+            #cords = func.restrict(*cords)
         else:
             n = random.random()
             prob = exp(-delta/t)
             if n < prob:
                 bestPoint = point
                 cords = newCords
+                ##Restrict
+                #cords = func.restrict(*cords)
         t *= a

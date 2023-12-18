@@ -67,5 +67,7 @@ def calculate(task):
         if point < bestPoint:
             bestPoint = point
             cords = v.add(cords,v.mulC(vector,lVector))
+            #Restrict
+            cords = func.restrict(*cords)
         else:
             lVector /= a

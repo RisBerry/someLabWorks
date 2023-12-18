@@ -1,6 +1,6 @@
 import methods.decimal as decimal
 import methods.vector as vec
-from math import sqrt
+from math import sqrt,sin,cos,pi
 from random import random
 
 step = 4
@@ -27,7 +27,9 @@ def calculate(task):
 
         while True:
             #Step 3
-            rVec = vec.normalize((random()*2-1.,random()*2-1.))
+            rnd = random()*2
+            rVec = vec.normalize((sin(pi*rnd), cos(pi*rnd)))
+            #rVec = vec.normalize((random()*2-1.,random()*2-1.))
 
             #Step 4
             p = vec.add(xk,vec.mulC(rVec, steep))

@@ -4,42 +4,42 @@ from methods.base import reportIt
 
 fileName = 'data\Функция_П2.txt'
 
-findMax =  True
+findMax = False
 
 #Tuning
 if findMax:
-    template.L = 11
-    template.a = 1.1
+    template.L = 16
+    template.a = 2
 
-    random.N = 16
-    random.L = 15 
+    random.N = 18
+    random.L = 13 
     random.a = 1.25
 
     heating.a = 0.985
-    heating.L = 7
-    heating.T = 150
-    heating.Tstop = 0.0001
+    heating.L = 13
+    heating.T = 105
+    heating.Tstop = 0.0011
 
-    genetic.a = 0.35
+    genetic.a = 0.3
     genetic.b = 0.45
-    genetic.N = 90
-    genetic.maxItter = 50
+    genetic.N = 55
+    genetic.maxItter = 60
 else:
     template.L = 28
-    template.a = 1.1
+    template.a = 1.95
 
-    random.N = 16
+    random.N = 32
     random.L = 25
     random.a = 1.25
 
     heating.a = 0.99
-    heating.L = 6
-    heating.T = 150
+    heating.L = 20
+    heating.T = 75
     heating.Tstop = 0.0001
 
-    genetic.a = 0.3
-    genetic.b = 0.4
-    genetic.N = 75
+    genetic.a = 0.35
+    genetic.b = 0.5
+    genetic.N = 80
     genetic.maxItter = 70
 
 task = base.task(fileName)
@@ -59,13 +59,18 @@ reportIt(template,task,points)
 #base.plot2dParam(task,template, [(lambda x:template.setL(x),1,30,1),(lambda x:template.seta(x),1.1,2.,0.05)], smallPoints)
 
 reportIt(random,task,points)
+#random.N = 32
 #base.plot2dParam(task,random, [(lambda x:random.setL(x),1,30,1),(lambda x:random.seta(x),1.1,2.,0.05)], smallPoints)
 #base.plot1dParam(task,random, (lambda x:random.setN(x),1,100,1), smallPoints)
 
 reportIt(heating,task,points)
+#heating.T = 100
+#heating.Tstop = 0.001
 #base.plot2dParam(task,heating, [(lambda x:heating.setL(x),1,20,1),(lambda x:heating.seta(x),0.8,0.99,0.005)], smallPoints)
 #base.plot2dParam(task,heating, [(lambda x:heating.setT(x),50,200,5),(lambda x:heating.setTstop(x),0.0001,0.0101,0.001)], smallPoints)
 
 reportIt(genetic,task,points)
+#genetic.N = 50
+#genetic.maxItter = 50 
 #base.plot2dParam(task,genetic, [(lambda x:genetic.seta(x),0.1,0.9,0.05),(lambda x:genetic.setb(x),0.1,1.,0.05)], smallPoints)
 #base.plot2dParam(task,genetic, [(lambda x:genetic.setN(x),10,100,5),(lambda x:genetic.setmaxItter(x),5,100,5)], smallPoints)

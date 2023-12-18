@@ -79,7 +79,8 @@ def calculate(task):
 
             parent1,parent2 = random.sample(tmpHerd, 2)
             
-            crossPoint = (parent1[random.randrange(2)],parent2[random.randrange(2)])
+            #crossPoint = (parent1[random.randrange(2)],parent2[random.randrange(2)])
+            crossPoint = (parent1[0],parent2[1])
             crossPoint = (*crossPoint, func.get(*crossPoint))
 
             #Trying to create uniqe individuals
