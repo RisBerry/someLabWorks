@@ -28,6 +28,8 @@ class function:
 
         array = []
         for line in f:
+            if len(line.split()) != 3:
+                continue
             x,y,z = map(float, line.split())
             array.append([x,y,z])
 
@@ -142,9 +144,9 @@ def reportIt(calculusClass,task,points):
     
     z = [-z[2] if task.func.inverted else z[2] for z in results]
 
+    print(f'[{calculusClass.__name__:20s}] Max file reads: {callCount:4d} | Max itterations: {itter:4d} | minZ: {min(z):.6f} maxZ: {max(z):.6f} avgZ: {avg(z):.6f} | Success rate: {100*S/N:.2f}%')
     plotTrace(task, None, None, trace = goodTrace)
     plotScatter(task, results)
-    print(f'[{calculusClass.__name__:20s}] Max file reads: {callCount:4d} | Max itterations: {itter:4d} | minZ: {min(z):.6f} maxZ: {max(z):.6f} avgZ: {avg(z):.6f} | Success rate: {100*S/N:.2f}%')
 
 def plot1dParam(task, calcClass, param = None, points = None):
     if param is None:
@@ -213,6 +215,7 @@ def plot2dParam(task, calcClass, params = None, points = None):
     results = [[None for j in range(p1i)] for i in range(p0i)]
 
     for i in range(p0i):
+        #print(f'{i} out of {p0i}')
         for j in range(p1i):
             #print(i,j)
             p0[0](p0s+p0p*i)

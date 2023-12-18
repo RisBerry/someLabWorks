@@ -36,11 +36,12 @@ def calculate(task):
     random.seed(1234)
 
     while True:
-        task.itter += 1
         task.addTraceConverted(*cords)
 
         if lVector < 1:
             return (*func.indexToCords(*cords),bestPoint)
+
+        task.itter += 1
 
         #Generate vectors
         baseVectors = []

@@ -2,9 +2,9 @@ from methods import base
 from methods import bruteforce,template,random,heating,genetic
 from methods.base import reportIt
 
-fileName = 'data\Функция_П2.txt'
+fileName = 'data\Функция_П4_В3.txt'
 
-findMax =  True
+findMax = True
 
 #Tuning
 if findMax:

@@ -36,11 +36,12 @@ def calculate(task):
             ]
 
     while True:
-        task.itter += 1
         task.addTraceConverted(*cords)
 
         if lVector < 1:
             return (*func.indexToCords(*cords),bestPoint)
+
+        task.itter += 1
 
         vector = baseVectors[0]
         point = func.get(*v.add(cords,v.mulC(vector,lVector)))
