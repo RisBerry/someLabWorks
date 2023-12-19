@@ -4,7 +4,7 @@ from methods.base import reportIt
 
 fileName = 'data\Функция_П2.txt'
 
-findMax = False
+findMax = True
 
 #Tuning
 if findMax:

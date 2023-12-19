@@ -145,8 +145,8 @@ def reportIt(calculusClass,task,points):
     z = [-z[2] if task.func.inverted else z[2] for z in results]
 
     print(f'[{calculusClass.__name__:20s}] Max file reads: {callCount:4d} | Max itterations: {itter:4d} | minZ: {min(z):.6f} maxZ: {max(z):.6f} avgZ: {avg(z):.6f} | Success rate: {100*S/N:.2f}%')
-    #plotTrace(task, None, None, trace = goodTrace)
-    #plotScatter(task, results)
+    plotTrace(task, None, None, trace = goodTrace)
+    plotScatter(task, results)
 
 def plot1dParam(task, calcClass, param = None, points = None):
     if param is None:
